@@ -7,7 +7,7 @@ export default {
     theme: {
       extend: {
         colors: {
-          primaryBg: '#000814', // Example hex color
+         
         },
       },
     },

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { useState } from "react";
 import { FaVideo } from "react-icons/fa6";
 import { PiExamLight } from "react-icons/pi";
 import { RiCodeBoxFill } from "react-icons/ri";
 import { IoDiamond } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+
+  
   const list = [
     {
       id: 1,
@@ -85,7 +87,7 @@ const Home = () => {
   const [cards, setCards] = useState(list[0]?.content);
 
   return (
-    <div className="w-full relative   py-10 bg-[#000814]">
+    <div className="w-full relative z-0   py-10 bg-[#000814]">
       <div className="flex mx-10 flex-col items-center">
         <p className="flex text-md font-semibold px-7 py-3 border rounded-4xl gap-4 items-center ">
           Become an instructor <FaArrowRightLong />{" "}

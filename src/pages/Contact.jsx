@@ -5,7 +5,7 @@ import { IoCall } from "react-icons/io5";
 
 const Contact = () => {
   return (
-    <div className='bg-[#000814] w-full flex justify-between'>
+    <div className='bg-[#000814] z-0 w-full flex justify-between'>
 
         <div className='bg-[#161D29] h-min ml-10  my-20 p-10'>
             <ul className=''>

@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <div>
-      <div className="bg-[#2C333F] text-center px-28 py-24">
+      <div className="bg-[#2C333F] z-0 text-center px-28 py-24">
         <h2 className="text-4xl font-semibold">Driving Innovation in Online Education for a Brighter Future</h2>
         <p className="text-md m-6 text-gray-500">
           Studynotion is at the forefront of driving innovation in online
