@@ -1,22 +1,36 @@
-import React from 'react';
+import React,{ useState} from 'react';
 import Slider from "react-slick";
 import { useSelector} from 'react-redux';
-import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { addCategory } from '../utils/categoryFunction';
 
 const Test = () => {
 
-  const category= useSelector( state => state.category.allCategory)
+  const [ cat, setCat ]= useState("");
+
+  const handleSubmit=async(e) => {
+    e.preventDefault();
+    const res= await addCategory(cat);
+    if(res.success){
+      toast.success(res.msg);
+      setCat("");
+    }
+    else{
+      toast.error(res.msg)
+    }
+  }
 
   return (
     <div className='min-h-screen p-10 bg-slate-950'>
       
-      { category?.map( (data) => {
-        return <div key={data._id} className='my-2 cursor-pointer' >
-           <NavLink to={`/catalog/${data?.category}`}>
-           <p> {data?.category} </p>
-           </NavLink>
-           </div>
-      })}
+      <form action="" onSubmit={handleSubmit}>
+        <label htmlFor="">
+          category
+          <input type="text" placeholder='' value={cat} onChange={(e)=> setCat(e.target.value)} />
+        </label>
+        <button className='p-2' type='submit' >Add Category</button>
+      </form>
 
     </div>
   )

@@ -70,7 +70,7 @@ const getCategories = async () => {
         <h2 className='w-[5vw] hover:cursor-pointer'> <NavLink to="/"> Logo </NavLink> </h2>
 
         
-<div className="relative">
+{/* <div className="relative">
   <input
     placeholder="Search..."
     className="input shadow-lg bg-[#161D29] border-gray-300 pl-3 pr-10 py-2 
@@ -92,7 +92,7 @@ const getCategories = async () => {
       strokeLinecap="round"
     ></path>
   </svg>
-</div>
+</div> */}
 
 <nav>
             <ul className=' flex-row gap-x-6 text-richblack-25 gap-5 hidden md:flex'>

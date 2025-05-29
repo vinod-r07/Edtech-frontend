@@ -10,7 +10,9 @@ import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { IoVideocamOutline } from "react-icons/io5";
 import { buyCourse } from '../services/courseFunc';
 import {enrollInCourse} from '../slice/userSlice';
-import WriteReview from '../component/course/writeReview';
+import { IoLanguageOutline } from "react-icons/io5";
+import { CiCalendarDate } from "react-icons/ci";
+
 
 const Course = () => {
 
@@ -30,9 +32,11 @@ const Course = () => {
   }, [courseId])
 
   useEffect( () => {
-    const result= userData?.courses.find( data => data._id === courseId);
+    if( userData) {
+      const result= userData?.courses?.find( data => data._id === courseId) ;
     if( result)
       setCoursePurchased(true)
+    }
   }, [courseId, userData?.courses])
 
   const setCourseInfo= async() => {
@@ -73,12 +77,15 @@ const Course = () => {
 
         <div className=' w-3/6'>
             <p className='text-4xl font-semibold py-4 '> {courseData?.title} </p>
-            <p> {courseData?.description} </p>
-            <span className='my-2'> {courseData?.rating} ⭐ </span> <span className='my-2 ml-2'> {courseData?.students} Student enrolled</span>
-            <p className='my-2'> By <span className='text-green-500 font-semibold'>{courseData?.instructor?.instructor?.fullName}</span> </p>
-            <p className='my-2'> {courseData?.Language} </p>
+            <p className='mb-4'> {courseData?.description} </p>
+            <span className='my-5'> {courseData?.rating} ⭐  </span> <span> ({courseData?.userRating?.length} Reviews) </span> <span className='my-2 ml-2 text-gray-400'> {courseData?.students?.length} Students enrolled</span>
+            <p className='my-2'>Created By <span className='text-green-500 font-semibold'>{courseData?.instructor?.instructor?.fullName}</span> </p>
+            <p className='my-2 flex gap-x-10 '>
+              <span className='flex gap-x-2 justify-between items-center'> <CiCalendarDate className='text-2xl'/> May 10, 2025 </span> 
+              <span className='flex gap-x-2 justify-between items-center'> <IoLanguageOutline className='text-2xl'/> Hinglish </span>
+            </p>
 
-            <div className='mt-20 p-5'>
+            <div className='mt-20 p-5 border'>
                 <p className='text-2xl font-semibold'>What will you learn</p>
                 <div>
                   { courseData?.what_will_you_learn?.map( (data, index) => {
@@ -87,34 +94,7 @@ const Course = () => {
                 </div>
             </div>
 
-            <div className='mx-5'>
-              <p className='text-3xl font-semibold my-4'>Course Content</p>
-              <p>
-                 {courseData?.content?.length} Section(s) 
-                 </p>
-
-                 <div className='bg-slate-700 my-4'>
-                  { courseData?.content?.map( (info,index) => {
-                    return <div className={` ${index === 0 ? "" : "border-t border-gray-600"}`} 
-                                key={info._id}>
-                      <p className='my-2 px-4 flex items-center gap-x-4 relative'> 
-                        <IoMdArrowDropdown/> 
-                        <span>{info?.title}</span>
-                        <span className='absolute right-4'> {info?.files?.length} file(s) </span>
-                        </p>
-                      {
-                        info?.files?.map( (card, index) => {
-                          return <div key={card._id} className={` bg-slate-950 ${index === 0 ? "" : "border-t border-slate-500"}  `}>
-                            <p className='px-4 py-2 flex items-center gap-x-4'> {card?.fileType === "pdf" ? <MdOutlinePictureAsPdf/> : <IoVideocamOutline/>}  
-                            {card?.fileName} </p>
-                            </div>
-                        })
-                      }
-                      </div>
-                  })}
-                 </div>
-            </div>
-
+            
         </div>
 
         <div className='w-2/6 h-min bg-gray-700 p-5  '>
